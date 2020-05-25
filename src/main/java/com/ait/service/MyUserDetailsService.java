@@ -19,9 +19,7 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-        MyUserDetails myUserDetails = userDetailsDao.findById("1001");
-        System.out.println(myUserDetails.getPassword() +" <Wrong> "+myUserDetails.getUsername());
-        System.out.println(myUserDetails.getUsername() +" <Right> "+myUserDetails.getPassword());
+        MyUserDetails myUserDetails = userDetailsDao.findByUsername(userName);
         return new User(myUserDetails.getUsername(),myUserDetails.getPassword(),new ArrayList<>());
     }
 }

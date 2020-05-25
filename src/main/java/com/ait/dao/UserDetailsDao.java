@@ -1,6 +1,7 @@
 package com.ait.dao;
 
 import com.ait.entity.MyUserDetails;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -9,16 +10,9 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public class UserDetailsDao  {
+public interface UserDetailsDao extends CrudRepository<MyUserDetails, Long> {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    public MyUserDetails findByUsername(String username);
 
-    public MyUserDetails findByUsername(String username) {
-        return entityManager.find(MyUserDetails.class, username);
-    }
-    public MyUserDetails findById(String id) {
-        return entityManager.find(MyUserDetails.class, id);
-    }
-
+    public MyUserDetails findById(String id);
 }
