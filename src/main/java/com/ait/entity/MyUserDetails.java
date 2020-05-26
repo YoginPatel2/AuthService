@@ -12,7 +12,7 @@ public class MyUserDetails implements Serializable {
     @GeneratedValue
     @Column
     private String id;
-    @Column
+    @Column(unique = true)
     private String username;
     @Column
     private String password;
