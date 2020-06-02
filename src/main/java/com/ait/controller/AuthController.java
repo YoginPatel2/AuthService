@@ -2,7 +2,9 @@ package com.ait.controller;
 
 import com.ait.entity.MyUserDetails;
 import com.ait.request.AuthenticationRequest;
+import com.ait.request.MyUserDetailsRequest;
 import com.ait.response.AuthenticationResponse;
+import com.ait.response.MyUserDetailsResponse;
 import com.ait.service.MyUserDetailsService;
 import com.ait.utils.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ public class AuthController {
     public String getValidate(){
             return "Welcome to Auth Service";
     }
+
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> createAuthenticationToken(@RequestBody AuthenticationRequest auth) throws Exception{
         try {
@@ -37,5 +40,10 @@ public class AuthController {
         final UserDetails userDetails = myUserDetailsService
                 .loadUserByUsername(auth.getUsername());
         return ResponseEntity.ok(new AuthenticationResponse(tokenUtil.generateToken(userDetails)));
+    }
+
+    @PostMapping("/users")
+    public ResponseEntity<?> createUser(@RequestBody MyUserDetailsRequest userDetailsRequest){
+        return ResponseEntity.ok(myUserDetailsService.createUser(userDetailsRequest));
     }
 }
