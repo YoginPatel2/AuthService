@@ -2,16 +2,19 @@ package com.ait.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 @Table(name = "user_details")
 public class MyUserDetails implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.AUTO)
     @Column
-    private String id;
+    private Long id;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Roles roles;
+
     @Column(unique = true)
     private String userId;
     @Column
@@ -27,8 +30,7 @@ public class MyUserDetails implements Serializable {
     @Column
     private String email;
     @Column
-    private Date createdDate;
-
+    private Long createdDate;
 
     public MyUserDetails(String username, String password) {
         this.userId = username;
@@ -38,11 +40,11 @@ public class MyUserDetails implements Serializable {
     public MyUserDetails() {
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -102,11 +104,19 @@ public class MyUserDetails implements Serializable {
         this.email = email;
     }
 
-    public Date getCreatedDate() {
+    public Long getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(Long createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public Roles getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Roles roles) {
+        this.roles = roles;
     }
 }

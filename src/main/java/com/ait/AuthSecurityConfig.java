@@ -33,10 +33,11 @@ public class AuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http.csrf().disable().authorizeRequests().antMatchers("/authenticate","/swagger-ui.html","/v2/api-docs")
+        http.csrf().disable().authorizeRequests().antMatchers("/authenticate","/swagger-ui.html","/swagger-ui.html/*","/v2/api-docs","/user/users")
+//        http.csrf().disable().authorizeRequests().antMatchers("/**")
                 .permitAll().anyRequest()
-                .authenticated().and()
-                .exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint)
+                .authenticated()
+//                .and().exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint)
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(tokenRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
