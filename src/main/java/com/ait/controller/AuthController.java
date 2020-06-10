@@ -1,15 +1,10 @@
 package com.ait.controller;
 
-import com.ait.entity.MyUserDetails;
 import com.ait.request.AuthenticationRequest;
-import com.ait.request.MyUserDetailsRequest;
 import com.ait.response.AuthenticationResponse;
-import com.ait.response.MyUserDetailsResponse;
 import com.ait.service.MyUserDetailsService;
 import com.ait.utils.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -18,11 +13,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
-import java.util.ArrayList;
-import java.util.List;
-
 @RestController
+@CrossOrigin
 public class AuthController {
 
     @Autowired

@@ -1,7 +1,7 @@
 package com.ait.controller;
 
-import com.ait.entity.MyUserDetails;
 import com.ait.request.MyUserDetailsRequest;
+import com.ait.response.MyUserDetailsResponse;
 import com.ait.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin
 public class UserController {
     @Autowired
     private MyUserDetailsService myUserDetailsService;
@@ -20,7 +21,7 @@ public class UserController {
     }
     @PutMapping("/users/{id}")
     public ResponseEntity<?> updateUser(@RequestBody MyUserDetailsRequest userDetailsRequest, @PathVariable Long id){
-        MyUserDetails myUserDetails = myUserDetailsService.update(userDetailsRequest,id);
+        MyUserDetailsResponse myUserDetails = myUserDetailsService.update(userDetailsRequest,id);
         if(myUserDetails != null){
             return ResponseEntity.ok(myUserDetails);
         }

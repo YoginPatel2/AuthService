@@ -12,9 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.access.ExceptionTranslationFilter;
-import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
@@ -33,8 +30,8 @@ public class AuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http.csrf().disable().authorizeRequests().antMatchers("/authenticate","/swagger-ui.html","/swagger-ui.html/*","/v2/api-docs","/user/users")
-//        http.csrf().disable().authorizeRequests().antMatchers("/**")
+//        http.csrf().disable().authorizeRequests().antMatchers("/authenticate","/swagger-ui.html","/swagger-ui.html/*","/v2/api-docs","/user/users")
+        http.csrf().disable().authorizeRequests().antMatchers("/**")
                 .permitAll().anyRequest()
                 .authenticated()
 //                .and().exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint)

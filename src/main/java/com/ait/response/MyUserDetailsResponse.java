@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -14,11 +12,11 @@ import java.util.Date;
 public class MyUserDetailsResponse {
 
     private String userId;
-    private String password;
+    private String role;
     private String firstName;
     private String lastLast;
     private String gender;
     private String mobile;
     private String email;
-    private Date createdDate;
+
 }
